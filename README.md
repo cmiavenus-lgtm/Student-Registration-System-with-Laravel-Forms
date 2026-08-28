@@ -182,12 +182,6 @@ graph TD
 
 All captures saved under `screenshots/`:
 
-| File | Description |
-|------|-------------|
-| Student Registration.jpg | Registration form with all 5 sections |
-| Validation Error.jpg | Error messages when fields are empty |
-| Flash success message.jpg | Green success notification |
-| student profile.jpg.png | Student profile with picture |
 
 ---
 
