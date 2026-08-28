@@ -71,17 +71,16 @@ Browser (form @ /students/create)
 7. **Response**: Redirects to profile page with success message
 8. **Browser**: Displays student profile with green flash notification
 
-```mermaid
 graph LR
-  B[Browser Form] --> R[Route POST /students]
-  R --> C[Controller store]
-  C --> V{Validation}
-  V -->|fails| E[Redirect back + errors]
-  V -->|passes| S[Store image]
-  S --> M[Model Student::create]
-  M --> DB[(MySQL students)]
-  DB --> Resp[Redirect 302 + flash]
-  Resp --> BV[Browser Profile Page]
+  A[Student Registration Form] --> B[POST /students]
+  B --> C[StudentController]
+  C --> D[Validate Input]
+  D -->|Invalid| E[Return Form + Error Messages]
+  D -->|Valid| F[Upload Profile Image]
+  F --> G[Create Student Record]
+  G --> H[(MySQL Database)]
+  H --> I[Redirect with Success Message]
+  I --> J[Student Profile Page]
 ```
 
 ---
@@ -114,25 +113,23 @@ Server-side validation is the final check. Client-side validation can be bypasse
 ERD Image: `documentation/Database ER Diagram.jpg`
 
 ```mermaid
-erDiagram
-  STUDENTS {
+  ENROLLEES {
     bigint id PK
-    varchar student_id UK
-    varchar first_name
+    varchar enrollment_id UK
+    varchar given_name
     varchar middle_name
-    varchar last_name
-    varchar email UK
-    varchar mobile_number
-    varchar gender
-    date date_of_birth
-    varchar program
-    varchar year_level
-    text address
-    varchar profile_picture
+    varchar family_name
+    varchar email_address UK
+    varchar contact_number
+    varchar sex
+    date birth_date
+    varchar course
+    varchar academic_year
+    text residential_address
+    varchar image_path
     timestamp created_at
     timestamp updated_at
   }
-```
 
 **Table Structure:**
 
@@ -161,7 +158,7 @@ erDiagram
 
 ## 6. Flowchart
 
-Image: `documentation/Registration Flowchart.drawio.png`
+Image: `documentation/Registration
 
 ```mermaid
 graph TD
