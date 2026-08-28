@@ -44,6 +44,9 @@ class StudentController extends Controller
             'profile_picture.max' => 'Profile picture must not exceed 2MB.',
         ]);
 
+        // Secure file upload: store in storage/app/public/profile_pictures, only path saved to DB
+        // Requires `php artisan storage:link` so files are accessible via /storage URL
+        // Validation above ensures only JPG/JPEG/PNG up to 2MB are accepted
         $path = $request->file('profile_picture')->store('profile_pictures', 'public');
         $validated['profile_picture'] = $path;
 
