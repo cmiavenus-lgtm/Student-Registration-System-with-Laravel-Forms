@@ -91,7 +91,8 @@
                 </div>
                 <div>
                     <label for="mobile_number" class="block text-sm font-medium text-slate-700 mb-1">Mobile Number <span class="text-red-500">*</span></label>
-                    <input type="text" id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}" placeholder="09123456789" class="w-full px-3 py-2.5 rounded-xl border {{ $errors->has('mobile_number') ? 'border-red-300 bg-red-50' : 'border-slate-300' }} focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition text-sm">
+                    <input type="text" id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}" placeholder="09123456789" pattern="09[0-9]{9}" maxlength="11" minlength="11" inputmode="numeric" title="11 digits starting with 09 (e.g., 09123456789)" class="w-full px-3 py-2.5 rounded-xl border {{ $errors->has('mobile_number') ? 'border-red-300 bg-red-50' : 'border-slate-300' }} focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition text-sm">
+                    <p class="mt-1 text-xs text-slate-500">11 digits, must start with 09</p>
                     @error('mobile_number')<p class="mt-1 text-xs text-red-600">{{ $message }}</p>@enderror
                 </div>
             </div>

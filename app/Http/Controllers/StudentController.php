@@ -36,13 +36,16 @@ class StudentController extends Controller
             'middle_name' => 'nullable|string|max:100',
             'last_name' => 'required|string|max:100',
             'email' => 'required|email|unique:students,email',
-            'mobile_number' => 'required|numeric',
+            'mobile_number' => ['required', 'regex:/^09[0-9]{9}$/', 'digits:11'],
             'date_of_birth' => 'required|date',
             'gender' => 'required',
             'program' => 'required',
             'year_level' => 'required',
             'address' => 'required|string',
             'profile_picture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ], [
+            'mobile_number.regex' => 'Mobile number must be 11 digits starting with 09.',
+            'mobile_number.digits' => 'Mobile number must be exactly 11 digits.',
         ]);
 
         // Secure file upload: store in storage/app/public/profile_pictures
