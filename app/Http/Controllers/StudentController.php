@@ -7,17 +7,27 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    /**
+     * Display a listing of registered students.
+     */
     public function index()
     {
         $students = Student::latest()->get();
+
         return view('students.index', compact('students'));
     }
 
+    /**
+     * Show the student registration form.
+     */
     public function create()
     {
         return view('students.create');
     }
 
+    /**
+     * Validate, store profile picture, and save student record.
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -44,14 +54,12 @@ class StudentController extends Controller
             'profile_picture.max' => 'Profile picture must not exceed 2MB.',
         ]);
 
-        // Secure file upload: store in storage/app/public/profile_pictures, only path saved to DB
-        // Requires `php artisan storage:link` so files are accessible via /storage URL
-        // Validation above ensures only JPG/JPEG/PNG up to 2MB are accepted
+        // Secure file upload: store in storage/app/public/profile_pictures
         if (!$request->hasFile('profile_picture') || !$request->file('profile_picture')->isValid()) {
             return back()->withErrors(['profile_picture' => 'Invalid file upload. Please try again.'])->withInput();
         }
-        $path = $request->file('profile_picture')->store('profile_pictures', 'public');
-        $validated['profile_picture'] = $path;
+
+        $validated['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
 
         $student = Student::create($validated);
 
@@ -59,6 +67,9 @@ class StudentController extends Controller
             ->with('success', 'Student registered successfully!');
     }
 
+    /**
+     * Display the specified student's profile.
+     */
     public function show(Student $student)
     {
         return view('students.show', compact('student'));
