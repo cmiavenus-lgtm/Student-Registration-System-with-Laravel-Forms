@@ -47,6 +47,9 @@ class StudentController extends Controller
         // Secure file upload: store in storage/app/public/profile_pictures, only path saved to DB
         // Requires `php artisan storage:link` so files are accessible via /storage URL
         // Validation above ensures only JPG/JPEG/PNG up to 2MB are accepted
+        if (!$request->hasFile('profile_picture') || !$request->file('profile_picture')->isValid()) {
+            return back()->withErrors(['profile_picture' => 'Invalid file upload. Please try again.'])->withInput();
+        }
         $path = $request->file('profile_picture')->store('profile_pictures', 'public');
         $validated['profile_picture'] = $path;
 
