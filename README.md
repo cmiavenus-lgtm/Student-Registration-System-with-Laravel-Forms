@@ -19,6 +19,8 @@ A complete Laravel web application that replaces paper-based student registratio
 9. [Solutions](#9-solutions)
 10. [Reflection](#10-reflection)
 11. [References](#11-references)
+12. [Required Diagrams](#12-required-diagrams)
+13. [Git Commit History](#13-git-commit-history)
 
 ---
 
@@ -247,7 +249,7 @@ Mozilla Developer Network. (2025). *MDN Web Docs — HTML forms and File API*. h
 
 ---
 
-## Required Diagrams
+## 12. Required Diagrams
 
 Save as `documentation/`:
 
@@ -257,7 +259,7 @@ Save as `documentation/`:
 
 ---
 
-## Git Commit History
+## 13. Git Commit History
 
 ```
 feat: initial Laravel project setup
