@@ -38,20 +38,11 @@ class StudentController extends Controller
             'email' => 'required|email|unique:students,email',
             'mobile_number' => 'required|numeric',
             'date_of_birth' => 'required|date',
-            'gender' => 'required|string',
-            'program' => 'required|string',
-            'year_level' => 'required|string',
+            'gender' => 'required',
+            'program' => 'required',
+            'year_level' => 'required',
             'address' => 'required|string',
             'profile_picture' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-        ], [
-            'student_id.required' => 'Student ID is required.',
-            'student_id.unique' => 'This Student ID is already registered.',
-            'email.email' => 'Please provide a valid email address.',
-            'email.unique' => 'This email address is already registered.',
-            'mobile_number.numeric' => 'Mobile number must be numeric.',
-            'profile_picture.image' => 'Profile picture must be an image.',
-            'profile_picture.mimes' => 'Profile picture must be JPG, JPEG, or PNG.',
-            'profile_picture.max' => 'Profile picture must not exceed 2MB.',
         ]);
 
         // Secure file upload: store in storage/app/public/profile_pictures
